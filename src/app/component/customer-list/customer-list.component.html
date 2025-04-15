@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Lista de Clientes</h2>
+    
+    <div *ngIf="loading" class="loading">
+      Cargando clientes...
+    </div>
+    
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+    
+    <table *ngIf="!loading && !error && customers.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Dirección</th>
+          <th>Email</th>
+          <th>Estado</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Token</th>
+          <th>ID Tipo</th>
+          <!-- <th>Acciones</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{ customer.custId }}</td>
+          <td>{{ customer.address }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.enable }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.token || 'N/A' }}</td>
+          <td>{{ customer.dotyId }}</td>
+          <!-- <td>
+            <button class="btn btn-primary btn-sm me-2">Editar</button>
+            <button class="btn btn-danger btn-sm">Eliminar</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="!loading && !error && customers.length === 0" class="alert alert-info">
+      No hay clientes disponibles.
+    </div>
