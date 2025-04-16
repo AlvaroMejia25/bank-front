@@ -20,7 +20,7 @@ export class CustomerService {
     return this.httpClient.get<Customer>(`${this.url}/${id}`);
   }
   save(customer:Customer):Observable<Customer>{
-    return this.httpClient.post<Customer>(this.url,customer);
+    return this.httpClient.post<Customer>(`${this.url}/save`,customer);
   }
   update(customer:Customer):Observable<Customer>{
     return this.httpClient.post<Customer>(this.url,customer);

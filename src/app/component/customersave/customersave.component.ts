@@ -55,13 +55,25 @@ export class CustomerSaveComponent implements OnInit {
 
 
   save(): void {
-    this.customerService.save(this.customer).subscribe(ok => {
-      this.showMsg = true;
-      this.messages[0] = "El customer se grabo con exito";
-    }, error => {
-      this.showMsg = true;
-      this.messages = error.error.error;
+    this.customerService.save(this.customer).subscribe({
+      next: () => {
+        this.showMsg = true;
+        this.messages = ["El customer se grabó con éxito"];
+      },
+      error: (err) => {
+        this.showMsg = true;
+  
+        // Verificar si el error tiene estructura esperada
+        if (err.error?.message) {
+          this.messages = [err.error.message]; // Caso 1: Mensaje único del backend
+        } else if (Array.isArray(err.error)) {
+          this.messages = err.error; // Caso 2: El backend devuelve una lista de errores
+        } else {
+          this.messages = ["Ocurrió un error inesperado. Inténtalo de nuevo."]; // Fallback
+        }
+      }
     });
   }
+  
 
 }

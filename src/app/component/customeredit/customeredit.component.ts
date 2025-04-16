@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
 })
 export class CustomerEditComponent implements OnInit {
+save() {
+throw new Error('Method not implemented.');
+}
   custId!: number;
   customer!: Customer;
   documentTypes!: DocumentType[];

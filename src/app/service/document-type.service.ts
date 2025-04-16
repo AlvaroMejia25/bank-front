@@ -13,7 +13,7 @@ export class DocumentTypeService {
   constructor(public httpClient: HttpClient) { }
 
   findAll():Observable<DocumentType[]>{
-    return this.httpClient.get<DocumentType[]>(this.url);
+    return this.httpClient.get<DocumentType[]>(`${this.url}/findAll`);
   }
 
   findById(id:number):Observable<DocumentType>{

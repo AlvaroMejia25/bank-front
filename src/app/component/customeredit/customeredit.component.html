@@ -17,7 +17,7 @@
       <label for="dotyId" class="form-label">Document Type</label>
       <select [(ngModel)]="customer.dotyId" #dotyId name="dotyId" id="dotyId" class="form-select">
         <option *ngFor="let documentType of documentTypes" >
-          {{documentType.dotyId}}
+          {{documentType.name}}
         </option>
       </select>
     </div>
