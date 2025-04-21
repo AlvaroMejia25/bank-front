@@ -5,11 +5,12 @@ import { CustomerService } from '../../service/customer.service';
 import { Customer } from '../../domain/customer';
 import { DocumentType } from '../../domain/document-type';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer-save',
   standalone: true, // Agregar para Standalone Component
-  imports: [CommonModule, FormsModule], // Importar CommonModule para directivas como *ngIf, *ngFor
+  imports: [CommonModule, FormsModule, RouterLink], // Importar CommonModule para directivas como *ngIf, *ngFor
   templateUrl: './customersave.component.html',
   styleUrls: ['./customersave.component.css'],
 })
@@ -23,7 +24,10 @@ export class CustomerSaveComponent implements OnInit {
 
   constructor(
     public customerService: CustomerService,
-    public documentTypeService: DocumentTypeService) {}
+    public documentTypeService: DocumentTypeService,
+    public router: Router  
+  ) {}
+    
 
     ngOnInit(): void {
       this.customer = {
@@ -59,6 +63,7 @@ export class CustomerSaveComponent implements OnInit {
       next: () => {
         this.showMsg = true;
         this.messages = ["El customer se grabó con éxito"];
+        this.router.navigate(['/customer-list']);
       },
       error: (err) => {
         this.showMsg = true;

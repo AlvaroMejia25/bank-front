@@ -20,6 +20,7 @@
           <th>Teléfono</th>
           <th>Token</th>
           <th>ID Tipo</th>
+          <th>Modificar</th>
           <!-- <th>Acciones</th> -->
         </tr>
       </thead>
@@ -33,6 +34,7 @@
           <td>{{ customer.phone }}</td>
           <td>{{ customer.token || 'N/A' }}</td>
           <td>{{ customer.dotyId }}</td>
+          <td><a [routerLink]="['/customeredit',customer.custId]">Edit</a></td>
           <!-- <td>
             <button class="btn btn-primary btn-sm me-2">Editar</button>
             <button class="btn btn-danger btn-sm">Eliminar</button>

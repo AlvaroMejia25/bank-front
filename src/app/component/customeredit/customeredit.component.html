@@ -1,63 +1,65 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<h2>Customer Edit</h2>
 
 <div *ngIf="showMsg" class="alert alert-info">
-    <ul>
-      <li *ngFor="let msg of messages">{{ msg }}</li>
-    </ul>
+  <ul>
+    <li *ngFor="let msg of messages">{{ msg }}</li>
+  </ul>
+</div>
+
+<!-- ✅ Formulario solo se muestra si el objeto customer está definido -->
+<form *ngIf="customer" #customerForm="ngForm" class="p-4 border rounded shadow-sm bg-light">
+  <div class="mb-3">
+    <label for="custId" class="form-label">ID</label>
+    <input [(ngModel)]="customer.custId" #custId="ngModel" type="text" name="custId" id="custId" class="form-control" placeholder="Enter ID" />
   </div>
-  
-  <form #customerForm="ngForm" class="p-4 border rounded shadow-sm bg-light">
-    <div class="mb-3">
-      <label for="custId" class="form-label">ID</label>
-      <input [(ngModel)]="customer.custId" #custId type="text" name="custId" id="custId" class="form-control" placeholder="Enter ID" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="dotyId" class="form-label">Document Type</label>
-      <select [(ngModel)]="customer.dotyId" #dotyId name="dotyId" id="dotyId" class="form-select">
-        <option *ngFor="let documentType of documentTypes" >
-          {{documentType.name}}
-        </option>
-      </select>
-    </div>
-  
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input [(ngModel)]="customer.name" #name type="text" name="name" id="name" class="form-control" placeholder="Enter Name" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="address" class="form-label">Address</label>
-      <input [(ngModel)]="customer.address" #address type="text" name="address" id="address" class="form-control" placeholder="Enter Address" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="phone" class="form-label">Phone</label>
-      <input [(ngModel)]="customer.phone" #phone type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input [(ngModel)]="customer.email" #email type="email" name="email" id="email" class="form-control" placeholder="Enter Email" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="token" class="form-label">Token</label>
-      <input [(ngModel)]="customer.token" #token type="text" name="token" id="token" class="form-control" placeholder="Enter Token" />
-    </div>
-  
-    <div class="mb-3">
-      <label for="enable" class="form-label">Enable</label>
-      <select [(ngModel)]="customer.enable" #enable name="enable" id="enable" class="form-select">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-    </div>
-  
-    <div class="d-flex justify-content-between">
-      <button class="btn btn-primary" (click)="save()">Editar</button>
-      <button class="btn btn-secondary" routerLink="/customer-list">Cancelar</button>
-    </div>
-  </form>
-  
+
+  <div class="mb-3"> 
+    <label for="dotyId" class="form-label">Document Type</label>
+    <select [(ngModel)]="customer.dotyId" name="dotyId" id="dotyId" class="form-select">
+      <option *ngFor="let documentType of documentTypes" [value]="documentType.dotyId">
+        {{ documentType.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input [(ngModel)]="customer.name" #name="ngModel" type="text" name="name" id="name" class="form-control" placeholder="Enter Name" />
+  </div>
+
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <input [(ngModel)]="customer.address" #address="ngModel" type="text" name="address" id="address" class="form-control" placeholder="Enter Address" />
+  </div>
+
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input [(ngModel)]="customer.phone" #phone="ngModel" type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone" />
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input [(ngModel)]="customer.email" #email="ngModel" type="email" name="email" id="email" class="form-control" placeholder="Enter Email" />
+  </div>
+
+  <div class="mb-3">
+    <label for="token" class="form-label">Token</label>
+    <input [(ngModel)]="customer.token" #token="ngModel" type="text" name="token" id="token" class="form-control" placeholder="Enter Token" />
+  </div>
+
+  <div class="mb-3">
+    <label for="enable" class="form-label">Enable</label>
+    <select [(ngModel)]="customer.enable" #enable="ngModel" name="enable" id="enable" class="form-select">
+      <option [value]="true">Yes</option>
+      <option [value]="false">No</option>
+    </select>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-primary" (click)="update()">Editar</button>
+    <button class="btn btn-primary" (click)="delete()">Borrar</button>
+    <button class="btn btn-secondary" routerLink="/customer-list">Cancelar</button>
+  </div>
+</form>

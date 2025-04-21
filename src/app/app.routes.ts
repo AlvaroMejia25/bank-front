@@ -6,8 +6,8 @@ import { CustomerEditComponent } from './component/customeredit/customeredit.com
 export const routes: Routes = [
     { path: 'customer-list', component: CustomerListComponent }, 
     { path: 'customersave', component: CustomerSaveComponent },
-    { path: 'customeredit', component: CustomerEditComponent }, // Nueva ruta
+    { path: 'customeredit/:id', component: CustomerEditComponent }, // Nueva ruta
     { path: '', redirectTo: '/customer-list', pathMatch: 'full' },
-    { path: '', redirectTo: '/customersave', pathMatch: 'full' },
-    { path: '', redirectTo: '/customeredit', pathMatch: 'full' },
+    
+    
 ];

@@ -17,15 +17,15 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(`${this.url}/findAll`);
   }
   findById(id:number):Observable<Customer>{
-    return this.httpClient.get<Customer>(`${this.url}/${id}`);
+    return this.httpClient.get<Customer>(`${this.url}/findById/${id}`);
   }
   save(customer:Customer):Observable<Customer>{
     return this.httpClient.post<Customer>(`${this.url}/save`,customer);
   }
   update(customer:Customer):Observable<Customer>{
-    return this.httpClient.post<Customer>(this.url,customer);
+    return this.httpClient.put<Customer>(`${this.url}/update`,customer);
   }
   delete(id:number):Observable<any>{
-    return this.httpClient.delete<Customer>(`${this.url}/${id}`);
+    return this.httpClient.delete<Customer>(`${this.url}/delete/${id}`);
   }
 }

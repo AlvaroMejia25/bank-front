@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../service/customer.service';
 import { Customer } from '../../domain/customer';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   providers: [CustomerService], // Agregar esto para inyectar el servicio
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css'] // Corrección: styleUrl -> styleUrls
